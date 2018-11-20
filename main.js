@@ -1,35 +1,31 @@
-/* km da percorrere */
-var km = prompt("Quanti km devi percorrere?");
-
-var costo_biglietto = 0.21 * km;
-
-console.log(costo_biglietto);
-
-
-/* eta richiesta */
-
-var eta = prompt("Qual è la tua età?");
-
-console.log(eta);
-
-/* Prezzo scontato per under 18 */
-
-if (eta < 18 ) {
-  var prezzoscontato = costo_biglietto * 0.8;
-  prezzoscontato = prezzoscontato.toFixed(2);
-  alert("Il totale da pagare ammonta a euro " + prezzoscontato);
-
+function randomnumber (min, max){
+  var numerogenerato = Math.floor(Math.random() * (max - min + 1) + min);
+  return numerogenerato;
 }
 
-/* Prezzo scontato per under 18 */
+var numerigenerati = 16;
+var numericasuali = [];
 
-else if (eta > 65) {
-  var prezzoscontato = costo_biglietto * 0.6;
-  prezzoscontato = prezzoscontato.toFixed(2);
-  alert("Il totale da pagare ammonta a euro " + prezzoscontato);
+for (var i = 0; i < numerigenerati; i++) {
+  var numerocasuale = randomnumber(1, 100);
+  numericasuali.push(numerocasuale);
 }
+console.log(numericasuali);
 
-else {
-  costo_biglietto = costo_biglietto.toFixed(2);
-  alert("Il totale da pagare ammonta a euro " + costo_biglietto);
+var numero_richieste = 100 - numerigenerati;
+var numeri_corretti = [];
+
+var i = 0;
+
+do {
+  var numero_giocatore = parseInt(prompt('Indovina 16 numeri compresi tra 1 e 100. Inserisci un numero:'));
+  if(!numericasuali.includes(numero_giocatore) && numero_giocatore < 100){
+    numeri_corretti.push(numero_giocatore);
+  }
+  console.log(numero_giocatore);
+  i ++;
+  console.log('Tentativo n. ' + i);
 }
+while (!numericasuali.includes(numero_giocatore) && i < numero_richieste && numero_giocatore < 100);
+console.log(numeri_corretti);
+document.writeln("<h2>Hai indovinato! Il numero corretto è " + numero_giocatore + " <br>Il tuo punteggio è di: " + i + "</h2>");
